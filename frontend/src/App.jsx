@@ -8,6 +8,9 @@ import Fixtures from "./pages/Fixtures";
 import Results from "./pages/Results";
 import Admin from "./pages/Admin";
 
+import AdminLogin from "./pages/AdminLogin";
+import ProtectedRoute from "./components/common/ProtectedRoute";
+
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 
@@ -23,7 +26,16 @@ function App() {
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/fixtures" element={<Fixtures />} />
         <Route path="/results" element={<Results />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin-login" element={<AdminLogin />} />
+
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <Admin />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       <Footer />
     </>

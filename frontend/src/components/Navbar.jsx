@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
+    const admin =
+    sessionStorage.getItem("admin_logged_in");
   return (
     <nav
       style={{
@@ -21,6 +23,12 @@ export default function Navbar() {
       <Link to="/participants" style={{ color: "white" }}>
         Participants
       </Link>
+
+      {admin && (
+    <Link to="/admin">
+        Admin
+    </Link>
+)}
     </nav>
   );
 }

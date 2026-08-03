@@ -41,3 +41,14 @@ def get_stats(db: Session):
         "singles": singles,
         "doubles": doubles,
     }
+
+def delete_player(db: Session, player_id: int):
+    player = db.query(Player).filter(Player.id == player_id).first()
+
+    if not player:
+        return None
+
+    db.delete(player)
+    db.commit()
+
+    return player

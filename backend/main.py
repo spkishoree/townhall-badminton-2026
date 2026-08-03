@@ -58,3 +58,13 @@ def register(player: schemas.PlayerCreate, db: Session = Depends(get_db)):
 @app.get("/stats")
 def stats(db: Session = Depends(get_db)):
     return crud.get_stats(db)
+
+
+@app.delete("/players/{player_id}")
+def delete_player(player_id: int, db: Session = Depends(get_db)):
+    player = crud.delete_player(db, player_id)
+
+    if not player:
+        raise HTTPException(status_code=404, detail="Player not found")
+
+    return {"message": "Player deleted successfully"}
